@@ -24,13 +24,13 @@ public class Gamer implements Runnable {
         }
     }
 
-    public String getMessage() {
-        String message = "";
+    public int getCoordinate() {
+        int coordinate = -1;
         try {
-            message = inStream.readUTF();
+            coordinate = inStream.readInt();
         } catch (IOException ex) {
             System.out.println("Ошибка получения сообщения");
         }
-        return message;
+        return coordinate;
     }
 }
