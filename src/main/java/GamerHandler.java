@@ -19,6 +19,7 @@ public class GamerHandler {
             ex.printStackTrace();
         }
     }
+
     public DataInputStream getInStream() {
         return inStream;
     }

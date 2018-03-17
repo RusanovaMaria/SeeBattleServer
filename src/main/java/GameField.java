@@ -3,7 +3,7 @@ public class GameField {
     private final int FIELD_SIZE = 10;
 
     private int[][] gameField =
-                    {{0, 0, 0, 0, 0, 0, 1, 1, 1, 1},
+            {{0, 0, 0, 0, 0, 0, 1, 1, 1, 1},
                     {0, 1, 1, 1, 0, 0, 0, 0, 0, 0},
                     {0, 0, 0, 0, 0, 0, 1, 1, 1, 0},
                     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -15,7 +15,7 @@ public class GameField {
                     {0, 0, 0, 0, 0, 0, 0, 0, 0, 1}};
 
 
-    public int [][] generate(){
-        return gameField;
+    public int[][] generate() {
+        return gameField.clone();
     }
 }

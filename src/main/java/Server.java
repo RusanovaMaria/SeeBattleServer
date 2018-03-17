@@ -11,13 +11,15 @@ public class Server {
 
     public void go() {
         gamers = new ArrayList<>();
+        GamerHandler gamerHandler;
         Gamer gamer;
         try {
             ServerSocket serverSocket = new ServerSocket(PORT);
 
             while (true) {
                 Socket gamerSocket = serverSocket.accept();
-                gamer = new Gamer(gamerSocket);
+                gamerHandler = new GamerHandler(gamerSocket);
+                gamer = new Gamer(gamerHandler);
                 gamers.add(gamer);
 
                 Thread t = new Thread(gamer);
@@ -28,7 +30,6 @@ public class Server {
                     connectGamers();
                 }
             }
-
         } catch (IOException ex) {
             System.out.println("Go method error");
             ex.printStackTrace();
