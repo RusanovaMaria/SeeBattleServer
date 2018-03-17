@@ -6,17 +6,14 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class Gamer implements Runnable{
     private Socket socket;
-    private Scanner scanner;
-    private PrintWriter writer;
+    DataInputStream inStream;
+    DataOutputStream outStream;
 
     Gamer (Socket gamerSocket) {
         try {
             socket = gamerSocket;
-            InputStream inStream = gamerSocket.getInputStream();
-            OutputStream outStream = gamerSocket.getOutputStream();
-
-            scanner = new Scanner(inStream, "Cp1251");
-            writer = new PrintWriter(new OutputStreamWriter(outStream, "Cp1251"),true);
+            inStream = new DataInputStream(gamerSocket.getInputStream());
+            outStream = new DataOutputStream(gamerSocket.getOutputStream());
 
         } catch (IOException ex){
             System.out.println("Gamer constructor error");
@@ -27,8 +24,14 @@ public class Gamer implements Runnable{
 
     }
 
-    public PrintWriter getPrintWriter(){
-        return writer;
+    public void sendMessage (String message){
+        try {
+            outStream.writeUTF(message);
+            outStream.flush();
+        } catch (IOException ex){
+            System.out.println("Ошибка правки сообщения");
+            ex.printStackTrace();
+        }
     }
 
     public Scanner gerScanner(){
