@@ -11,46 +11,43 @@ public class Server {
 
     private final int PORT = 8989;
     private final String HOST = "127.0.0.1";
-    private ArrayList <Gamer> gamers;
+    private ArrayList<Gamer> gamers;
 
-
-    public void go(){
+    public void go() {
         gamers = new ArrayList<>();
         Gamer gamer;
         try {
             ServerSocket serverSocket = new ServerSocket(PORT);
 
-            while(true){
+            while (true) {
                 Socket gamerSocket = serverSocket.accept();
                 gamer = new Gamer(gamerSocket);
                 gamers.add(gamer);
 
-                Thread t  = new Thread(gamer);
+                Thread t = new Thread(gamer);
                 t.start();
                 System.out.println("got a connection");
 
-                if (gamers.size()>=2){
-                        connectGamers();
-
+                if (gamers.size() >= 2) {
+                    connectGamers();
                 }
             }
 
-        } catch(IOException ex){
+        } catch (IOException ex) {
             System.out.println("Go method error");
             ex.printStackTrace();
         }
-   }
-
-     private void connectGamers(){
+    }
+    private void connectGamers() {
         Game game;
         Gamer gamer1;
         Gamer gamer2;
 
-            gamer1 = gamers.get(0);
-            gamer2 = gamers.get(1);
-            game = new Game(gamer1, gamer2);
-            game.play();
-         }
+        gamer1 = gamers.get(0);
+        gamer2 = gamers.get(1);
+        game = new Game(gamer1, gamer2);
+        game.play();
+    }
 
 }
 
