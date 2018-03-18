@@ -1,30 +1,40 @@
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
+import java.util.Scanner;
 
-public class GamerHandler {
+public class GamerHandler implements Runnable{
 
     private Socket socket;
-    private DataInputStream inStream;
-    private DataOutputStream outStream;
+    private Scanner scanner;
+    private PrintWriter writer;
 
     GamerHandler(Socket gamerSocket) {
         try {
             socket = gamerSocket;
-            inStream = new DataInputStream(gamerSocket.getInputStream());
-            outStream = new DataOutputStream(gamerSocket.getOutputStream());
+            InputStream inStream = gamerSocket.getInputStream();
+            OutputStream outStream = gamerSocket.getOutputStream();
+            scanner = new Scanner(inStream);
+            writer = new PrintWriter(new OutputStreamWriter(outStream), true);
         } catch (IOException ex) {
             System.out.println("Gamer constructor error");
             ex.printStackTrace();
         }
     }
+    public void run(){
+        while (!socket.isInputShutdown()){
 
-    public DataInputStream getInStream() {
-        return inStream;
+        }
+    }
+    public Scanner getInStream() {
+        return scanner;
     }
 
-    public DataOutputStream getOutStream() {
-        return outStream;
+    public PrintWriter getOutStream() {
+        return writer;
+    }
+
+    public Socket getSocket() {
+        return socket;
     }
 }
+

@@ -22,7 +22,7 @@ public class Server {
                 gamer = new Gamer(gamerHandler);
                 gamers.add(gamer);
 
-                Thread t = new Thread(gamer);
+                Thread t = new Thread(gamerHandler);
                 t.start();
                 System.out.println("got a connection");
 

@@ -20,17 +20,21 @@ public class Game {
         int y = -1;
         generateGameFields();
         while (!endOfTheGame()) {
-            requestAndGetXCoordinate(firstGamer);
-            requestAndGetYCoordinate(firstGamer);
+           x= requestAndGetXCoordinate(firstGamer);
+           y= requestAndGetYCoordinate(firstGamer);
+           firstGamer.sendMessage(fight(x, y, secondGameField));
             if (endOfTheGame()) {
                 firstGamer.sendMessage("You are the winner");
                 secondGamer.sendMessage("You are the looser");
+               finish();
             } else {
-                requestAndGetXCoordinate(secondGamer);
-                requestAndGetYCoordinate(secondGamer);
+               x= requestAndGetXCoordinate(secondGamer);
+               y= requestAndGetYCoordinate(secondGamer);
+               secondGamer.sendMessage(fight(x, y, firstGameField));
                 if (endOfTheGame()) {
                     secondGamer.sendMessage("You are the winner");
                     firstGamer.sendMessage("You are the looser");
+                    finish();
                 }
             }
         }
@@ -67,5 +71,9 @@ public class Game {
             }
         }
         return isEnd;
+    }
+    private void finish(){
+        firstGamer.finish();
+        secondGamer.finish();
     }
 }
