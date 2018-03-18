@@ -2,7 +2,7 @@ import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class Gamer{
+public class Gamer {
     private GamerHandler gamerHandler;
     private Scanner scanner;
     private PrintWriter writer;
@@ -16,16 +16,18 @@ public class Gamer{
     }
 
     public void sendMessage(String message) {
-            writer.println(message);
+        writer.println(message);
 
     }
+
     public int getCoordinate() {
         int coordinate = -1;
-            if (scanner.hasNext()) {
-                coordinate = scanner.nextInt();
-            }
+        if (scanner.hasNext()) {
+            coordinate = scanner.nextInt();
+        }
         return coordinate;
     }
+
     public void finish() {
         try {
             scanner.close();

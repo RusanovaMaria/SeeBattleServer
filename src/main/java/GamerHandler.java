@@ -2,7 +2,7 @@ import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class GamerHandler implements Runnable{
+public class GamerHandler implements Runnable {
 
     private Socket socket;
     private Scanner scanner;
@@ -20,11 +20,13 @@ public class GamerHandler implements Runnable{
             ex.printStackTrace();
         }
     }
-    public void run(){
-        while (!socket.isInputShutdown()){
+
+    public void run() {
+        while (!socket.isInputShutdown()) {
 
         }
     }
+
     public Scanner getInStream() {
         return scanner;
     }
