@@ -1,3 +1,7 @@
+package service;
+
+import domain.game.Game;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
