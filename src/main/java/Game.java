@@ -1,7 +1,3 @@
-import java.io.PrintWriter;
-import java.util.Map;
-import java.util.Scanner;
-
 public class Game {
 
     private Gamer firstGamer;
@@ -20,17 +16,17 @@ public class Game {
         int y = -1;
         generateGameFields();
         while (!endOfTheGame()) {
-           x= requestAndGetXCoordinate(firstGamer);
-           y= requestAndGetYCoordinate(firstGamer);
-           firstGamer.sendMessage(fight(x, y, secondGameField));
+            x = requestAndGetXCoordinate(firstGamer);
+            y = requestAndGetYCoordinate(firstGamer);
+            firstGamer.sendMessage(fight(x, y, secondGameField));
             if (endOfTheGame()) {
                 firstGamer.sendMessage("You are the winner");
                 secondGamer.sendMessage("You are the looser");
-               finish();
+                finish();
             } else {
-               x= requestAndGetXCoordinate(secondGamer);
-               y= requestAndGetYCoordinate(secondGamer);
-               secondGamer.sendMessage(fight(x, y, firstGameField));
+                x = requestAndGetXCoordinate(secondGamer);
+                y = requestAndGetYCoordinate(secondGamer);
+                secondGamer.sendMessage(fight(x, y, firstGameField));
                 if (endOfTheGame()) {
                     secondGamer.sendMessage("You are the winner");
                     firstGamer.sendMessage("You are the looser");
@@ -39,23 +35,27 @@ public class Game {
             }
         }
     }
+
     private void generateGameFields() {
         gameField = new GameField();
         firstGameField = gameField.generate();
         secondGameField = gameField.generate();
     }
+
     private int requestAndGetXCoordinate(Gamer gamer) {
         int x = -1;
         gamer.sendMessage("Enter the x-coordinate");
         x = gamer.getCoordinate();
         return x;
     }
+
     private int requestAndGetYCoordinate(Gamer gamer) {
         int y = -1;
         gamer.sendMessage("Enter the y-coordinate");
         y = gamer.getCoordinate();
         return y;
     }
+
     public String fight(int x, int y, int[][] gameField) {
         String result;
         if (gameField[x][y] == 1) {
@@ -63,6 +63,7 @@ public class Game {
         } else result = "Мимо";
         return result;
     }
+
     public boolean endOfTheGame() {
         boolean isEnd = true;
         for (int i = 0; i < 10; i++) {
@@ -72,7 +73,8 @@ public class Game {
         }
         return isEnd;
     }
-    private void finish(){
+
+    private void finish() {
         firstGamer.finish();
         secondGamer.finish();
     }

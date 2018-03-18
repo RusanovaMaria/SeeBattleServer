@@ -35,6 +35,7 @@ public class Server {
             ex.printStackTrace();
         }
     }
+
     private void connectGamers() {
         Game game;
         Gamer gamer1;
@@ -45,7 +46,6 @@ public class Server {
         game = new Game(gamer1, gamer2);
         game.play();
     }
-
 }
 
 
