@@ -1,40 +1,36 @@
 import java.io.*;
+import java.net.Socket;
+import java.util.Scanner;
 
-public class Gamer implements Runnable {
+public class Gamer{
     private GamerHandler gamerHandler;
-    private DataInputStream inStream;
-    private DataOutputStream outStream;
+    private Scanner scanner;
+    private PrintWriter writer;
+    private Socket socket;
 
     Gamer(GamerHandler gamerHandler) {
         this.gamerHandler = gamerHandler;
+        scanner = gamerHandler.getInStream();
+        writer = gamerHandler.getOutStream();
+        socket = gamerHandler.getSocket();
     }
 
-    public void run() {
-        inStream = gamerHandler.getInStream();
-        outStream = gamerHandler.getOutStream();
-    }
     public void sendMessage(String message) {
-        try {
-            outStream.writeUTF(message);
-            outStream.flush();
-        } catch (IOException ex) {
-            System.out.println("Ошибка правки сообщения");
-            ex.printStackTrace();
-        }
+            writer.println(message);
+
     }
     public int getCoordinate() {
         int coordinate = -1;
-        try {
-            coordinate = inStream.readInt();
-        } catch (IOException ex) {
-            System.out.println("Ошибка получения сообщения");
-        }
+            if (scanner.hasNext()) {
+                coordinate = scanner.nextInt();
+            }
         return coordinate;
     }
-    public void closeAllStreams() {
+    public void finish() {
         try {
-            inStream.close();
-            outStream.close();
+            scanner.close();
+            writer.close();
+            socket.close();
         } catch (IOException ex) {
             System.out.println("Ошибка закрытия потоков");
         }
