@@ -20,17 +20,13 @@ public class Game {
             y = requestAndGetYCoordinate(firstGamer);
             firstGamer.sendMessage(fight(x, y, secondGameField));
             if (endOfTheGame()) {
-                firstGamer.sendMessage("You are the winner");
-                secondGamer.sendMessage("You are the looser");
-                finish();
+                finishTheGame(firstGamer, secondGamer);
             } else {
                 x = requestAndGetXCoordinate(secondGamer);
                 y = requestAndGetYCoordinate(secondGamer);
                 secondGamer.sendMessage(fight(x, y, firstGameField));
                 if (endOfTheGame()) {
-                    secondGamer.sendMessage("You are the winner");
-                    firstGamer.sendMessage("You are the looser");
-                    finish();
+                   finishTheGame(secondGamer, firstGamer);
                 }
             }
         }
@@ -74,8 +70,10 @@ public class Game {
         return isEnd;
     }
 
-    private void finish() {
-        firstGamer.finish();
-        secondGamer.finish();
+    private void finishTheGame(Gamer winner, Gamer looser) {
+        winner.sendMessage("You are the winner");
+        looser.sendMessage("You are the looser");
+        winner.finish();
+        looser.finish();
     }
 }
