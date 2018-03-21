@@ -1,5 +1,6 @@
 package service;
 
+import domain.Gamer;
 import domain.game.Game;
 
 import java.io.*;
