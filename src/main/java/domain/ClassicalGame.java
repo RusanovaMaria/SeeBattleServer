@@ -17,11 +17,11 @@ public class ClassicalGame implements Game {
 
     @Override
     public Result shoot(Player player, Cell cell) {
-        Result result;
-        if (cell.getUsageSatus()== true){
+        Result result = Result.MISSED;
 
+        if (cell.getUsageSatus()== true){
+            
         }
-        else result = Result.MISSED;
         return result;
     }
 
@@ -56,4 +56,5 @@ public class ClassicalGame implements Game {
         playingFields.put(firstPlayer, new ClassicalPlayingField());
         playingFields.put(secondPlayer, new ClassicalPlayingField());
     }
+
 }

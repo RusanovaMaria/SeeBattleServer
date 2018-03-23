@@ -30,4 +30,5 @@ public class Cell {
     public boolean getUsageSatus(){
         return isUsed;
     }
+
 }
