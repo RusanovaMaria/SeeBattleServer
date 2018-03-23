@@ -22,12 +22,13 @@ public class ClassicalGame implements Game {
 
     @Override
     public boolean checkEnd() {
-        boolean isEnd = true;
+        boolean isEnd = false;
         for (PlayingField field : gameFields.values()){
             field = new ClassicalPlayingField();
-
+            if (field.isEmpty()) isEnd = true;
+            }
+            return isEnd;
         }
-    }
 
     @Override
     public Player getWinner() {

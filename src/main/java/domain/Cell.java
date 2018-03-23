@@ -2,7 +2,6 @@ package domain;
 
 public class Cell {
     private CellStatus status;
-    private boolean isLabeled = false;
 
     Cell(CellStatus status){
         this.status = status;

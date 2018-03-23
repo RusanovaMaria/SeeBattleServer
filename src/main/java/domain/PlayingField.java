@@ -2,5 +2,5 @@ package domain;
 
 public interface PlayingField {
 
-    Cell [][] getCellList();
+    boolean isEmpty();
 }
