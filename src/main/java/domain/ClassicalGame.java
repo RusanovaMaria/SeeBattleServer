@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class ClassicalGame implements Game {
 
-    private Map<Player, PlayingField> gameFields;
+    private Map<Player, PlayingField> playingFields;
     private  Player firstPlayer;
     private Player secondPlayer;
 
@@ -23,7 +23,7 @@ public class ClassicalGame implements Game {
     @Override
     public boolean checkEnd() {
         boolean isEnd = false;
-        for (PlayingField field : gameFields.values()){
+        for (PlayingField field : playingFields.values()){
             field = new ClassicalPlayingField();
             if (field.isEmpty()) isEnd = true;
             }
@@ -32,12 +32,23 @@ public class ClassicalGame implements Game {
 
     @Override
     public Player getWinner() {
+        Player player;
+        PlayingField playingField;
+
+        for (Player p : playingFields.keySet()){
+            playingField = new ClassicalPlayingField();
+            playingField = playingFields.get(p);
+
+            if (!playingField.isEmpty()) return p;
+            
+            }
+
         return null;
     }
 
     private void initPlayFields(){
-        gameFields = new HashMap<>();
-        gameFields.put(firstPlayer, new ClassicalPlayingField());
-        gameFields.put(secondPlayer, new ClassicalPlayingField());
+        playingFields = new HashMap<>();
+        playingFields.put(firstPlayer, new ClassicalPlayingField());
+        playingFields.put(secondPlayer, new ClassicalPlayingField());
     }
 }
