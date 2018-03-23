@@ -19,7 +19,7 @@ public class ClassicalPlayingField implements PlayingField {
         boolean isEmpty = false;
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
-                if (cells[i][j].getStatus().equals(CellStatus.USED)) isEmpty = false;
+                if (!cells[i][j].getUsageSatus()) isEmpty = false;
             }
         }
         return isEmpty;
@@ -35,11 +35,10 @@ public class ClassicalPlayingField implements PlayingField {
 
     private void generateEmptyField(){
 
-        Cell cell = new Cell(CellStatus.EMPTY);
-
         for (int i = 0; i < SIZE; i++){
             for (int j = 0; j < SIZE; j++){
-                cells [i][j] = cell;
+                cells [i][j] = new Cell(i, j);
+
             }
         }
     }

@@ -17,7 +17,12 @@ public class ClassicalGame implements Game {
 
     @Override
     public Result shoot(Player player, Cell cell) {
-        return null;
+        Result result;
+        if (cell.getUsageSatus()== true){
+
+        }
+        else result = Result.MISSED;
+        return result;
     }
 
     @Override
@@ -40,7 +45,7 @@ public class ClassicalGame implements Game {
             playingField = playingFields.get(p);
 
             if (!playingField.isEmpty()) return p;
-            
+
             }
 
         return null;
