@@ -12,7 +12,7 @@ public class ShipUnit {
         isAlive = false;
     }
 
-    public boolean getStatus(){
+    public boolean getAliveStatus(){
         return isAlive;
     }
 }

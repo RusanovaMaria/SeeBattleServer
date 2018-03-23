@@ -20,7 +20,7 @@ public class ClassicalGame implements Game {
         Result result = Result.MISSED;
 
         if (cell.getUsageSatus()== true){
-            
+
         }
         return result;
     }

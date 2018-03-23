@@ -15,6 +15,7 @@ public class Ship {
     }
 
     public int getSize() {
+
         return size;
     }
 
@@ -23,6 +24,7 @@ public class Ship {
     }
 
     public List<ShipUnit> getShipUnitsList() {
+
         return shipUnitsList;
     }
 
@@ -33,5 +35,36 @@ public class Ship {
             shipUnitsList.add(shipUnit);
             i++;
         }
+    }
+
+    public boolean isDamaded() {
+        boolean damaged = false;
+
+        for (ShipUnit shipUnit : shipUnitsList) {
+            if (!isKilled() && (!isNotDamaged())){
+                damaged = true;
+            }
+        }
+    }
+
+    public boolean isKilled() {
+        boolean isKilled = true;
+
+        for (ShipUnit shipUnit : shipUnitsList) {
+            if (shipUnit.getAliveStatus()) {
+                isKilled = false;
+            }
+        }
+        return isKilled;
+    }
+
+    public boolean isNotDamaged() {
+        boolean notDamaged = true;
+        for (ShipUnit shipUnit : shipUnitsList) {
+            if (!shipUnit.getAliveStatus()) {
+                notDamaged = false;
+            }
+        }
+        return notDamaged;
     }
 }
