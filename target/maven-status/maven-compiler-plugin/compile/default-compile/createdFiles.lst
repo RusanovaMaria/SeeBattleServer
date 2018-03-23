@@ -1,8 +1,0 @@
-domain\ClassicalGame.class
-domain\PlayingField.class
-domain\Player.class
-domain\Ship.class
-App.class
-domain\Result.class
-domain\Cell.class
-domain\Game.class
