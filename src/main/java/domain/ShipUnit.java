@@ -1,15 +1,18 @@
-package domain.object.unit;
+package domain;
 
 public class ShipUnit {
 
     private boolean isAlive;
 
-    public ShipUnit() {
+    ShipUnit(){
         isAlive = true;
     }
 
-    public void destroy() {
+    public void destroy(){
         isAlive = false;
     }
 
+    public boolean getStatus(){
+        return isAlive;
+    }
 }

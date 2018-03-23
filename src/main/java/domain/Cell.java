@@ -1,25 +1,22 @@
 package domain;
 
-import domain.object.unit.ShipUnit;
-
 public class Cell {
+    private CellStatus status;
+    private boolean isLabeled = false;
 
-    private int x;
-    private char y;
-
-    private ShipUnit shipUnit;
-
-    private boolean isLabeled;
-
-    public Cell(int x, char y, ShipUnit shipUnit) {
-        this.x = x;
-        this.y = y;
-        this.shipUnit = shipUnit;
-        this.isLabeled = false;
+    Cell(CellStatus status){
+        this.status = status;
     }
 
-    public void mark() {
-        this.isLabeled = true;
+    public CellStatus getStatus() {
+        return status;
     }
 
+    public void setValue(CellStatus status){
+        this.status = status;
+    }
+
+    public void mark(){
+        status = CellStatus.MARKED;
+    }
 }

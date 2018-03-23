@@ -1,7 +1,5 @@
 package domain;
 
 public enum Result {
-
-    KILL, SUCCESS, UNSUCCESS
-
+    GOT, MISSED, KILL;
 }

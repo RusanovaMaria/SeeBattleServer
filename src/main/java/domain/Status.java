@@ -1,7 +1,5 @@
 package domain;
 
 public enum Status {
-
-    DEAD, ALIVE, INJURED
-
+    DEAD, ALIVE, DAMAGED;
 }
