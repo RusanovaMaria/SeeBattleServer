@@ -1,5 +1,7 @@
 package domain;
 
+import domain.GameObjectParts.ShipPart;
+
 public class Cell {
     private char y;
     private int x;
@@ -16,7 +18,7 @@ public class Cell {
         this.isUsed = false;
     }
 
-    public Cell(char y, int x, ShipPart shipPart){
+    public Cell(char y, int x, ShipPart shipPart) {
 
         this.x = x;
         this.y = y;
@@ -30,12 +32,12 @@ public class Cell {
         this.isLabeled = true;
     }
 
-    public boolean getUsageSatus(){
+    public boolean getUsageSatus() {
 
         return isUsed;
     }
 
-    public ShipPart getAllocatedPart(){
+    public ShipPart getAllocatedPart() {
         return shipPart;
     }
 

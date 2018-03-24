@@ -1,4 +1,9 @@
-package domain;
+package domain.Game.Player;
+
+import domain.Cell;
+import domain.Enums.Result;
+import domain.GameObjects.Ship;
+import domain.GameObjectParts.ShipPart;
 
 public class ClassicalPlayer implements Player {
     String name;
@@ -22,7 +27,7 @@ public class ClassicalPlayer implements Player {
 
             if (ship.isKilled()) {
                 result = Result.KILL;
-            } else {
+            } else if (ship.isAlive()) {
                 result = Result.GOT;
             }
         }

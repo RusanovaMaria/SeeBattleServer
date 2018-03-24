@@ -1,6 +1,6 @@
 package domain;
 
-public class ShipPart {
+public class ShipPart implements GameObjectPart{
 
     private Ship ship;
     private boolean isAlive;
@@ -11,15 +11,17 @@ public class ShipPart {
         isAlive = true;
     }
 
+    @Override
     public void destroy(){
         isAlive = false;
     }
 
-    public Ship getOwnerShip(){
-        return ship;
-    }
-
+    @Override
     public boolean getAliveStatus(){
         return isAlive;
+    }
+
+    public Ship getOwnerShip(){
+        return ship;
     }
 }

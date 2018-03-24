@@ -2,7 +2,7 @@ package domain;
 
 import java.util.List;
 
-public class Ship{
+public class Ship implements GameObject{
 
     private Status status;
     private int size;
@@ -10,17 +10,14 @@ public class Ship{
 
     Ship(int size) {
         this.size = size;
+        status = Status.ALIVE;
         build();
     }
 
     public int getSize() {
 
         return size;
-    }
 
-    public List<ShipPart> getUnitsList() {
-
-        return shipPartList;
     }
 
     private void build() {
@@ -32,17 +29,7 @@ public class Ship{
         }
     }
 
-    public boolean isDamaded() {
-        boolean damaged = false;
-
-        for (ShipPart shipUnit : shipPartList) {
-            if (!isKilled() && (!isNotDamaged())) {
-                damaged = true;
-            }
-        }
-        return damaged;
-    }
-
+    @Override
     public boolean isKilled() {
         boolean isKilled = true;
 
@@ -54,13 +41,26 @@ public class Ship{
         return isKilled;
     }
 
-    public boolean isNotDamaged() {
-        boolean notDamaged = true;
+    @Override
+    public boolean isAlive() {
+        boolean isAlive = true;
         for (ShipPart shipUnit : shipPartList) {
             if (!shipUnit.getAliveStatus()) {
-                notDamaged = false;
+                isAlive = false;
             }
         }
-        return notDamaged;
+        return isAlive;
+    }
+
+    @Override
+    public boolean isDamaged() {
+        boolean isDamaged = false;
+
+        for (ShipPart shipUnit : shipPartList) {
+            if (!isKilled() && (!isAlive())) {
+                isDamaged = true;
+            }
+        }
+        return isDamaged;
     }
 }

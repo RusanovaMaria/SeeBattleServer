@@ -1,6 +1,7 @@
 package domain;
 
 public interface Game {
-boolean checkEnd();
+boolean isEnd();
 ClassicalPlayer getWinner();
+
 }
