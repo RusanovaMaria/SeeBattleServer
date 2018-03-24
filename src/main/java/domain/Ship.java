@@ -2,16 +2,15 @@ package domain;
 
 import java.util.List;
 
-public class Ship {
+public class Ship{
 
-    private int size;
     private Status status;
-
-    private List<ShipUnit> shipUnitsList;
+    private int size;
+    private List<ShipPart> shipPartList;
 
     Ship(int size) {
         this.size = size;
-        fillShipUnitsList();
+        build();
     }
 
     public int getSize() {
@@ -19,20 +18,16 @@ public class Ship {
         return size;
     }
 
-    public Status getStatus() {
-        return status;
+    public List<ShipPart> getUnitsList() {
+
+        return shipPartList;
     }
 
-    public List<ShipUnit> getShipUnitsList() {
-
-        return shipUnitsList;
-    }
-
-    private void fillShipUnitsList() {
-        ShipUnit shipUnit = new ShipUnit();
+    private void build() {
+        ShipPart shipPart = new ShipPart(this);
         int i = 0;
         while (i < size) {
-            shipUnitsList.add(shipUnit);
+            shipPartList.add(shipPart);
             i++;
         }
     }
@@ -40,17 +35,18 @@ public class Ship {
     public boolean isDamaded() {
         boolean damaged = false;
 
-        for (ShipUnit shipUnit : shipUnitsList) {
-            if (!isKilled() && (!isNotDamaged())){
+        for (ShipPart shipUnit : shipPartList) {
+            if (!isKilled() && (!isNotDamaged())) {
                 damaged = true;
             }
         }
+        return damaged;
     }
 
     public boolean isKilled() {
         boolean isKilled = true;
 
-        for (ShipUnit shipUnit : shipUnitsList) {
+        for (ShipPart shipUnit : shipPartList) {
             if (shipUnit.getAliveStatus()) {
                 isKilled = false;
             }
@@ -60,7 +56,7 @@ public class Ship {
 
     public boolean isNotDamaged() {
         boolean notDamaged = true;
-        for (ShipUnit shipUnit : shipUnitsList) {
+        for (ShipPart shipUnit : shipPartList) {
             if (!shipUnit.getAliveStatus()) {
                 notDamaged = false;
             }

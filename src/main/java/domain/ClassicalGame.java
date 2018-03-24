@@ -5,24 +5,14 @@ import java.util.Map;
 
 public class ClassicalGame implements Game {
 
-    private Map<Player, PlayingField> playingFields;
-    private  Player firstPlayer;
-    private Player secondPlayer;
+    private Map<ClassicalPlayer, PlayingField> playingFields;
+    private ClassicalPlayer firstPlayer;
+    private ClassicalPlayer secondPlayer;
 
-    ClassicalGame(Player firstPlayer, Player secondPlayer){
+    ClassicalGame(ClassicalPlayer firstPlayer, ClassicalPlayer secondPlayer){
         this.firstPlayer = firstPlayer;
         this.secondPlayer = secondPlayer;
         initPlayFields();
-    }
-
-    @Override
-    public Result shoot(Player player, Cell cell) {
-        Result result = Result.MISSED;
-
-        if (cell.getUsageSatus()== true){
-
-        }
-        return result;
     }
 
     @Override
@@ -36,11 +26,11 @@ public class ClassicalGame implements Game {
         }
 
     @Override
-    public Player getWinner() {
-        Player player;
+    public ClassicalPlayer getWinner() {
+        ClassicalPlayer player;
         PlayingField playingField;
 
-        for (Player p : playingFields.keySet()){
+        for (ClassicalPlayer p : playingFields.keySet()){
             playingField = new ClassicalPlayingField();
             playingField = playingFields.get(p);
 

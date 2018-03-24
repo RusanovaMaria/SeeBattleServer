@@ -1,34 +1,42 @@
 package domain;
 
 public class Cell {
+    private char y;
     private int x;
-    private int y;
 
     private boolean isUsed;
     private boolean isLabeled;
-    private ShipUnit shipUnit;
+    private ShipPart shipPart;
 
-    public Cell(int x, int y) {
+    public Cell(char y, int x) {
+
         this.x = x;
         this.y = y;
         this.isLabeled = false;
         this.isUsed = false;
     }
 
-    public Cell(int x, int y, ShipUnit shipUnit){
+    public Cell(char y, int x, ShipPart shipPart){
+
         this.x = x;
         this.y = y;
-        this.shipUnit = shipUnit;
+        this.shipPart = shipPart;
         this.isLabeled = false;
         this.isUsed = true;
     }
 
     public void mark() {
+
         this.isLabeled = true;
     }
 
     public boolean getUsageSatus(){
+
         return isUsed;
+    }
+
+    public ShipPart getAllocatedPart(){
+        return shipPart;
     }
 
 }

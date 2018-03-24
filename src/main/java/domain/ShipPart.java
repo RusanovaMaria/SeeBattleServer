@@ -1,15 +1,22 @@
 package domain;
 
-public class ShipUnit {
+public class ShipPart {
 
+    private Ship ship;
     private boolean isAlive;
 
-    ShipUnit(){
+    ShipPart(Ship ship){
+
+        this.ship = ship;
         isAlive = true;
     }
 
     public void destroy(){
         isAlive = false;
+    }
+
+    public Ship getOwnerShip(){
+        return ship;
     }
 
     public boolean getAliveStatus(){

@@ -5,6 +5,7 @@ import java.util.List;
 public class ClassicalPlayingField implements PlayingField {
 
     private final int SIZE = 10;
+    private final char [] CHARS = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
 
     private Cell[][] cells;
 
@@ -25,6 +26,10 @@ public class ClassicalPlayingField implements PlayingField {
         return isEmpty;
     }
 
+    public int getSize(){
+        return SIZE;
+    }
+
     private void generate(){
 
     }
@@ -37,8 +42,7 @@ public class ClassicalPlayingField implements PlayingField {
 
         for (int i = 0; i < SIZE; i++){
             for (int j = 0; j < SIZE; j++){
-                cells [i][j] = new Cell(i, j);
-
+                cells [i][j] = new Cell(CHARS[i],j);
             }
         }
     }
