@@ -41,11 +41,11 @@ public class Cell {
         return shipPart;
     }
 
-    public int getY(){
+    public int getY() {
         return y;
     }
 
-    public int getX(){
+    public int getX() {
         return x;
     }
 

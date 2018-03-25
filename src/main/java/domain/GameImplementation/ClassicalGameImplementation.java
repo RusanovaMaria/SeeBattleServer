@@ -1,9 +1,11 @@
 package domain.GameImplementation;
 
 import domain.Cell;
+import domain.Game.ActionHandler.ActionHandler;
 import domain.Game.ActionHandler.ClassicalActionHandler;
 import domain.Game.Game;
 import domain.Game.Player.Player;
+import domain.PlayerHandler;
 import domain.PlayingFields.PlayingField;
 
 import java.util.Map;
@@ -12,7 +14,8 @@ public class ClassicalGameImplementation {
 
     private Game game;
     private ClassicalActionHandler actionHandler;
-    private Map <Player, PlayingField> playingFieldMap;
+    private Map<Player, PlayingField> playingFieldMap;
+    private Map<PlayerHandler, ActionHandler> handlerMap;
 
     public ClassicalGameImplementation(Game game) {
         this.game = game;
@@ -23,16 +26,16 @@ public class ClassicalGameImplementation {
         while (!game.isEnd()) {
             for (Map.Entry<Player, PlayingField> entry : playingFieldMap.entrySet()) {
                 Player player = entry.getKey();
+
             }
         }
     }
 
-    private Cell findCell(char y, int x, PlayingField field){
-        Cell cell = field.findCell(y, x);
-        return cell;
+    private void haveGameFields() {
+        playingFieldMap = game.getPlayingFields();
     }
 
-    private void haveGameFields(){
-        playingFieldMap = game.getPlayingFields();
+    private void returnResult(PlayerHandler playerHandler) {
+
     }
 }

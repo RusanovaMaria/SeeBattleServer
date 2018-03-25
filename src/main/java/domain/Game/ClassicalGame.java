@@ -12,10 +12,10 @@ import java.util.Map;
 public class ClassicalGame implements Game {
 
     private Map<Player, PlayingField> playingFields;
-    private ClassicalPlayer firstPlayer;
-    private ClassicalPlayer secondPlayer;
+    private Player firstPlayer;
+    private Player secondPlayer;
 
-    ClassicalGame(ClassicalPlayer firstPlayer, ClassicalPlayer secondPlayer) {
+    public ClassicalGame(Player firstPlayer, Player secondPlayer) {
         this.firstPlayer = firstPlayer;
         this.secondPlayer = secondPlayer;
         initPlayFields();

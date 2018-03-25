@@ -34,12 +34,12 @@ public class ClassicalPlayingField implements PlayingField {
     }
 
     @Override
-    public Cell findCell(char y, int x){
+    public Cell findCell(char y, int x) {
         Cell cell = null;
 
-        for (int i = 0; i<SIZE; i++){
-            for (int j = 0; j<SIZE; j++){
-                if ((cells[i][j].getY()==y) && (cells[i][j].getX() == x)){
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                if ((cells[i][j].getY() == y) && (cells[i][j].getX() == x)) {
                     cell = cells[i][j];
                 }
             }
