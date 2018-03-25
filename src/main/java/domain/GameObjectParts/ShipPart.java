@@ -1,27 +1,29 @@
-package domain;
+package domain.GameObjectParts;
 
-public class ShipPart implements GameObjectPart{
+import domain.GameObjects.Ship;
+
+public class ShipPart implements GameObjectPart {
 
     private Ship ship;
     private boolean isAlive;
 
-    ShipPart(Ship ship){
+    public ShipPart(Ship ship) {
 
         this.ship = ship;
         isAlive = true;
     }
 
     @Override
-    public void destroy(){
+    public void destroy() {
         isAlive = false;
     }
 
     @Override
-    public boolean getAliveStatus(){
+    public boolean getAliveStatus() {
         return isAlive;
     }
 
-    public Ship getOwnerShip(){
+    public Ship getOwnerShip() {
         return ship;
     }
 }

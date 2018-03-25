@@ -1,11 +1,16 @@
-package domain;
+package domain.Game.ActionHandler;
 
-public class ClassicalActionHandler implements ActionHandler{
+import domain.Cell;
+import domain.Game.Player.Player;
+import domain.Enums.Result;
+
+public class ClassicalActionHandler implements ActionHandler {
+
 
     private Player player;
     private Cell cell;
 
-    ClassicalActionHandler(Player player, Cell cell){
+    ClassicalActionHandler(Player player, Cell cell) {
         this.player = player;
         this.cell = cell;
     }
@@ -15,9 +20,13 @@ public class ClassicalActionHandler implements ActionHandler{
         Result result = this.player.action(this.cell);
         String s = "";
 
-        if (result == Result.MISSED){s = "Мимо";}
-        else if (result == Result.GOT){s = "Попал";}
-        else {s = "Убил";}
+        if (result == Result.MISSED) {
+            s = "Мимо";
+        } else if (result == Result.GOT) {
+            s = "Попал";
+        } else {
+            s = "Убил";
+        }
 
         return s;
     }

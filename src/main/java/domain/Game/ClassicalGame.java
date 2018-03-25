@@ -1,5 +1,6 @@
 package domain.Game;
 
+import domain.Cell;
 import domain.Game.Player.ClassicalPlayer;
 import domain.PlayingFields.ClassicalPlayingField;
 import domain.Game.Player.Player;

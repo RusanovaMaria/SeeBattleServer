@@ -1,8 +1,11 @@
-package domain;
+package domain.GameObjects;
+
+import domain.Enums.Status;
+import domain.GameObjectParts.ShipPart;
 
 import java.util.List;
 
-public class Ship implements GameObject{
+public class Ship implements GameObject {
 
     private Status status;
     private int size;
