@@ -1,15 +1,15 @@
 package domain;
 
-public class Gamer {
+public class Player {
 
-    private String name;
+    String name;
 
-    Gamer(String name) {
+    public Player(String name) {
         this.name = name;
     }
 
     public String getName() {
         return name;
     }
-
 }
+
