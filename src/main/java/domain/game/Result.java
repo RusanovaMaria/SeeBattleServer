@@ -1,4 +1,4 @@
-package domain.playingfield;
+package domain.game;
 
 public enum Result{
 MISS, GOT, KILL
