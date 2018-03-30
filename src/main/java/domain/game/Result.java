@@ -1,5 +1,5 @@
 package domain.game;
 
 public enum Result{
-MISS, GOT, KILL
+MISSED, GOT, KILLED, REAPETED
 }

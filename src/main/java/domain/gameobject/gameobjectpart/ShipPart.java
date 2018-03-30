@@ -1,12 +1,30 @@
-public class ShipPart {
+package domain.gameobject.gameobjectpart;
 
-    private boolean isAlive;
+import domain.gameobject.GameObject;
+import domain.gameobject.Ship;
 
-    public ShipPart(){
-        isAlive = true;
+public class ShipPart implements GameObjectPart{
+
+    private boolean lifeStatus;
+    private Ship ship;
+
+    public ShipPart(Ship ship){
+        this.ship = ship;
+        lifeStatus = true;
     }
 
+    @Override
     public void destroy(){
-        isAlive = false();
+        lifeStatus = false;
+    }
+
+    @Override
+    public boolean isAlive(){
+        return lifeStatus;
+    }
+
+    @Override
+    public GameObject getOwnObject(){
+        return ship;
     }
 }

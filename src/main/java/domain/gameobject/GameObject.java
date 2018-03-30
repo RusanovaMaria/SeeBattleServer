@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public interface GameObject {
     public int getSize();
     public Status getStatus();
-    public Kind getKind();
     public void changeStatus();
+    public Kind getKind();
     public ArrayList<GameObjectPart> getAllParts();
 }

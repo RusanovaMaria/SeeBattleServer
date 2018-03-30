@@ -40,24 +40,25 @@ public class Ship implements GameObject {
 
     @Override
     public void changeStatus() {
+        Status status = Status.ALIVE;
 
-       if (isDamaged()) status = Status.INJURED;
-       if (isKilled()) status = Status.KILLED;
+        if (isDamaged()) status = Status.INJURED;
+        if (isKilled()) status = Status.KILLED;
     }
 
     @Override
-    public ArrayList<GameObjectPart> getAllParts() {
+    public ArrayList <GameObjectPart> getAllParts(){
         return shipParts;
     }
 
     private void build(int size) {
         shipParts = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            shipParts.add(new ShipPart());
+            shipParts.add(new ShipPart(this));
         }
     }
 
-    private void defineVariety(int size){
+    private void defineVariety(int size) {
         if (size == 1) kind = Kind.SINGLE_DECKED;
         if (size == 2) kind = Kind.DOUBLE_DECKED;
         if (size == 3) kind = Kind.THREE_DECKED;
@@ -67,7 +68,7 @@ public class Ship implements GameObject {
     private boolean isDamaged() {
         boolean damage = false;
 
-        if ((!isKilled()) &&  (!isAlive())) {
+        if ((!isKilled()) && (!isAlive())) {
             damage = true;
         }
         return damage;

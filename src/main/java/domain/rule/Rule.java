@@ -4,7 +4,7 @@ import domain.gameobject.Kind;
 
 public interface Rule {
 
-    public int [] getGameObjectsSize();
-    public int countNumberOfObjects(Kind kind);
+    public int[] getGameObjectsSize();
 
+    public int countNumberOfObjects(Kind kind);
 }
