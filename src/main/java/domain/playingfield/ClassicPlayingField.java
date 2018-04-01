@@ -38,8 +38,9 @@ public class ClassicPlayingField implements PlayingField {
         }
         return empty;
     }
+
     @Override
-    public Cell [] [] getAllCells(){
+    public Cell [][] getCells(){
         return cells;
     }
 
@@ -65,12 +66,13 @@ public class ClassicPlayingField implements PlayingField {
             else if (isProperPlaceAtTheBottom(x, y, ship)) positionShipAtTheBottom(x, y, ship);
         }
 
-        for (int i = 0; i<SIZE; i++){
-            for (int j = 0; j<SIZE; j++){
-                System.out.print(cells[i][j].isUsed() + " ");
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                System.out.print(cells[i][j].getGameObjectPart() + " ");
             }
             System.out.println();
         }
+        System.out.println();
     }
 
     private void generateEmptyField() {
@@ -78,7 +80,7 @@ public class ClassicPlayingField implements PlayingField {
             for (int j = 0; j < SIZE; j++) {
                 char y = CHAR_COORDINATE[i];
                 int x = j;
-                cells[i][j] = new Cell(y, x);
+                cells[i][j] = new Cell(y, x, null);
             }
         }
     }
@@ -99,13 +101,13 @@ public class ClassicPlayingField implements PlayingField {
 
     private int generateRandomY() {
         Random random = new Random();
-        int y = (0 + random.nextInt(SIZE-1));
+        int y = (0 + random.nextInt(SIZE - 1));
         return y;
     }
 
     private int generateRandomX() {
         Random random = new Random();
-        int x = (0 + random.nextInt(SIZE-1));
+        int x = (0 + random.nextInt(SIZE - 1));
         return x;
     }
 
@@ -124,7 +126,7 @@ public class ClassicPlayingField implements PlayingField {
         boolean properPlace = true;
 
         for (int i = x; i <= x + ship.getSize() + 1; i++) {
-           if ((i >= SIZE) || (cells[i][y].isUsed() == true) || ((y+1 < SIZE) && (cells[i][y+1].isUsed() == true)) || ((y-1>= MIN) && (cells[i][y+1].isUsed() == true))) {
+            if ((i >= SIZE) || (cells[i][y].getGameObjectPart() != null) || ((y + 1 < SIZE) && (cells[i][y + 1].getGameObjectPart() != null)) || ((y - 1 >= MIN) && (cells[i][y + 1].getGameObjectPart() != null))) {
                 properPlace = false;
             }
         }
@@ -135,7 +137,7 @@ public class ClassicPlayingField implements PlayingField {
         boolean properPlace = true;
 
         for (int i = x - ship.getSize() - 1; i <= x + 1; i++) {
-            if ((i < MIN) || (cells[i][y].isUsed() == true) || ((y+1 < SIZE) && (cells[i][y+1].isUsed() == true)) || ((y-1 >= MIN) && (cells[i][y+1].isUsed() == true))) {
+            if ((i < MIN) || (cells[i][y].getGameObjectPart() != null) || ((y + 1 < SIZE) && (cells[i][y + 1].getGameObjectPart() != null)) || ((y - 1 >= MIN) && (cells[i][y + 1].getGameObjectPart() != null))) {
                 properPlace = false;
             }
         }
@@ -147,7 +149,7 @@ public class ClassicPlayingField implements PlayingField {
         boolean properPlace = true;
 
         for (int i = y; i <= y + ship.getSize() + 1; i++) {
-            if ((i >= SIZE) || (cells[x][i].isUsed() == true) || ((x+1 < SIZE) && (cells[x+1][i].isUsed() == true)) || ((x-1 >= MIN) && (cells[x-1][i].isUsed() == true))) {
+            if ((i >= SIZE) || (cells[x][i].getGameObjectPart() != null) || ((x + 1 < SIZE) && (cells[x + 1][i].getGameObjectPart() != null)) || ((x - 1 >= MIN) && (cells[x - 1][i].getGameObjectPart() != null))) {
                 properPlace = false;
             }
         }
@@ -158,7 +160,7 @@ public class ClassicPlayingField implements PlayingField {
         boolean properPlace = true;
 
         for (int i = y - ship.getSize() - 1; i <= y + 1; i++) {
-            if ((i < MIN) || (cells[x][i].isUsed() == true) || ((x+1 < SIZE) && (cells[x+1][i].isUsed() == true)) || ((x-1 >= MIN) && (cells[x-1][i].isUsed() == true))) {
+            if ((i < MIN) || (cells[x][i].getGameObjectPart() != null) || ((x + 1 < SIZE) && (cells[x + 1][i].getGameObjectPart() != null)) || ((x - 1 >= MIN) && (cells[x - 1][i].getGameObjectPart() != null))) {
                 properPlace = false;
             }
         }
@@ -170,7 +172,7 @@ public class ClassicPlayingField implements PlayingField {
         ArrayList<GameObjectPart> shipParts = ship.getAllParts();
 
         for (int i = x; i < x + ship.getSize(); i++) {
-            for (int j = 0; j<ship.getSize(); j++) {
+            for (int j = 0; j < ship.getSize(); j++) {
                 cells[i][y] = new Cell(CHAR_COORDINATE[y], i, shipParts.get(j));
             }
         }
@@ -180,9 +182,9 @@ public class ClassicPlayingField implements PlayingField {
         ArrayList<GameObjectPart> shipParts = ship.getAllParts();
 
         for (int i = x - ship.getSize(); i < x; i++) {
-            for (int j = 0; j < ship.getSize(); j++){
+            for (int j = 0; j < ship.getSize(); j++) {
                 cells[i][y] = new Cell(CHAR_COORDINATE[y], i, shipParts.get(j));
-        }
+            }
         }
     }
 

@@ -15,7 +15,7 @@ public class ClassicGame implements Game {
 
     private Player firstPlayer;
     private Player secondPlayer;
-    private Map<Player, PlayingField> playingFieldMap = new HashMap<>();
+    private Map<Player, PlayingField> playingFieldAndPlayerMap = new HashMap<>();
 
     public ClassicGame(Player firstPlayer, Player secondPlayer) {
         this.firstPlayer = firstPlayer;
@@ -24,30 +24,30 @@ public class ClassicGame implements Game {
     }
 
     @Override
-    public Result shoot(Player player, Cell cell) {
+    public Result shoot(Player player, char y, int x) {
         Result result = null;
+        Cell cell = defineHit(player, y, x);
 
-        GameObjectPart shipPart = cell.getGameObjectPart();
-        cell.mark();
+        System.out.println(cell);
 
-        if (shipPart == null) {
-            if (cell.isLabeled()){
-                result = Result.REAPETED;
-            } else{
-                result = Result.MISSED;
-            }
+        if (cell.isLabeled()) {
+            result = Result.REAPETED;
         } else {
-            if (shipPart.isAlive()) {
+            if (cell.getGameObjectPart() == null) {
+                result = Result.MISSED;
+            } else {
+                GameObjectPart shipPart = cell.getGameObjectPart();
                 shipPart.destroy();
                 GameObject ship = shipPart.getOwnObject();
-                ship.changeStatus();
+                ship.getStatus();
                 Status status = ship.getStatus();
                 if (status == Status.KILLED) {
                     result = Result.KILLED;
-                } else result = Result.GOT;
-            } else {
-                result = Result.REAPETED;
+                } else {
+                    result = Result.GOT;
+                }
             }
+            cell.mark();
         }
         return result;
     }
@@ -56,7 +56,7 @@ public class ClassicGame implements Game {
     public boolean isEnd() {
         boolean end = true;
 
-        for (PlayingField playingField : playingFieldMap.values()) {
+        for (PlayingField playingField : playingFieldAndPlayerMap.values()) {
             if (!playingField.isEmpty()) end = false;
         }
         return end;
@@ -66,15 +66,46 @@ public class ClassicGame implements Game {
     public Player getWinner() {
         Player winner = null;
 
-        for (Player player : playingFieldMap.keySet()) {
-            PlayingField playingField = playingFieldMap.get(player);
+        for (Player player : playingFieldAndPlayerMap.keySet()) {
+            PlayingField playingField = playingFieldAndPlayerMap.get(player);
             if (playingField.isEmpty()) winner = player;
         }
         return winner;
     }
 
+    @Override
+    public Player getLooser(){
+        Player looser = null;
+
+        Player winner = getWinner();
+
+        for (Player player: playingFieldAndPlayerMap.keySet()){
+            if (!player.equals(winner)) looser = player;
+        }
+        return looser;
+    }
+
+    @Override
+    public Map<Player, PlayingField> getPlayingFieldAndPlayerMap(){
+        return playingFieldAndPlayerMap;
+    }
+
+    private Cell defineHit (Player player, char y, int x){
+        Cell cell = null;
+
+        PlayingField playingField = playingFieldAndPlayerMap.get(player);
+        Cell [] [] cells = playingField.getCells();
+
+        for (int i = 0; i<cells.length; i++){
+            for (int j = 0; j < cells.length; j++){
+                if ((cells[i][j].getY() == y) && (cells[i][j].getX() == x)) cell = cells[i][j];
+            }
+        }
+        return cell;
+    }
+
     private void initPlayingField() {
-        playingFieldMap.put(firstPlayer, new ClassicPlayingField());
-        playingFieldMap.put(secondPlayer, new ClassicPlayingField());
+        playingFieldAndPlayerMap.put(firstPlayer, new ClassicPlayingField());
+        playingFieldAndPlayerMap.put(secondPlayer, new ClassicPlayingField());
     }
 }

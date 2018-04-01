@@ -6,5 +6,6 @@ public interface PlayingField {
 
     boolean isEmpty();
 
-    Cell [] [] getAllCells();
+    public Cell [][] getCells();
+
 }

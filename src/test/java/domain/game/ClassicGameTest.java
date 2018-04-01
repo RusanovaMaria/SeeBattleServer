@@ -1,8 +1,11 @@
 package domain.game;
 
+import domain.gameobject.Ship;
+import domain.gameobject.gameobjectpart.ShipPart;
 import domain.player.Player;
 import domain.playingfield.Cell;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -19,15 +22,10 @@ public class ClassicGameTest {
     game = new ClassicGame(firstPlayer, secondPlayer);
 }
 
-    @Test
-    public void isFindCell(){
-        boolean find = game.isFindCell(firstPlayer, new Cell('a', 2));
-        assertTrue(find);
-    }
-
+    @Ignore
     @Test
     public void shoot() {
-        Result result = game.shoot(firstPlayer, new Cell('a', 2));
+        Result result = game.shoot(firstPlayer,'a', 2);
         assertEquals(Result.MISSED, result);
     }
 

@@ -8,8 +8,6 @@ import java.util.ArrayList;
 
 public class Ship implements GameObject {
 
-    private static final Logger log = Logger.getLogger(Ship.class);
-
     private ArrayList<GameObjectPart> shipParts;
     int size;
     private Status status;
@@ -47,7 +45,7 @@ public class Ship implements GameObject {
     }
 
     @Override
-    public ArrayList <GameObjectPart> getAllParts(){
+    public ArrayList<GameObjectPart> getAllParts() {
         return shipParts;
     }
 
