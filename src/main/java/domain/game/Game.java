@@ -7,13 +7,15 @@ import domain.playingfield.PlayingField;
 import java.util.Map;
 
 public interface Game {
-    public Result shoot(Player player, char y, int x);
+     Result shoot(Player player, Cell cell);
 
-    public Player getWinner();
+     Cell defineHit(Player player, char y, int x);
 
-    public Player getLooser();
+     Player getWinner();
 
-    public boolean isEnd();
+     Player getLooser();
 
-    public Map <Player, PlayingField> getPlayingFieldAndPlayerMap();
+     boolean isEnd();
+
+     Map <Player, PlayingField> getPlayingFieldAndPlayerMap();
 }

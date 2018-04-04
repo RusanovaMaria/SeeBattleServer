@@ -61,14 +61,14 @@ public class ClassicPlayingField implements PlayingField {
             }
 
             if (isProperPlaceToTheRight(x, y, ship)) positionShipToTheRight(x, y, ship);
-            else if (isProperPlaceToTheLeft(x, y, ship)) positionShiptoTheLeft(x, y, ship);
+            else if (isProperPlaceToTheLeft(x, y, ship)) positionShipToTheLeft(x, y, ship);
             else if (isProperPlaceOnTop(x, y, ship)) positionShipOnTop(x, y, ship);
             else if (isProperPlaceAtTheBottom(x, y, ship)) positionShipAtTheBottom(x, y, ship);
         }
 
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
-                System.out.print(cells[i][j].getGameObjectPart() + " ");
+                System.out.print(cells[i][j].getY() + " " + cells[i][j].getX() );
             }
             System.out.println();
         }
@@ -173,17 +173,19 @@ public class ClassicPlayingField implements PlayingField {
 
         for (int i = x; i < x + ship.getSize(); i++) {
             for (int j = 0; j < ship.getSize(); j++) {
-                cells[i][y] = new Cell(CHAR_COORDINATE[y], i, shipParts.get(j));
+                char c = cells[i][y].getY();
+                cells[i][y] = new Cell(c, i, shipParts.get(j));
             }
         }
     }
 
-    private void positionShiptoTheLeft(int x, int y, GameObject ship) {
+    private void positionShipToTheLeft(int x, int y, GameObject ship) {
         ArrayList<GameObjectPart> shipParts = ship.getAllParts();
 
         for (int i = x - ship.getSize(); i < x; i++) {
             for (int j = 0; j < ship.getSize(); j++) {
-                cells[i][y] = new Cell(CHAR_COORDINATE[y], i, shipParts.get(j));
+                char c = cells[i][y].getY();
+                cells[i][y] = new Cell(c, i, shipParts.get(j));
             }
         }
     }
@@ -193,7 +195,8 @@ public class ClassicPlayingField implements PlayingField {
 
         for (int i = y; i < y + ship.getSize(); i++) {
             for (int j = 0; j < ship.getSize(); j++) {
-                cells[x][i] = new Cell(CHAR_COORDINATE[i], x, shipParts.get(j));
+                char c = cells[x][j].getY();
+                cells[i][y] = new Cell(c, i, shipParts.get(j));
             }
         }
     }
@@ -203,7 +206,8 @@ public class ClassicPlayingField implements PlayingField {
 
         for (int i = y - ship.getSize(); i < y; i++) {
             for (int j = 0; j < ship.getSize(); j++) {
-                cells[x][i] = new Cell(CHAR_COORDINATE[i], x, shipParts.get(j));
+                char c = cells[x][j].getY();
+                cells[i][y] = new Cell(c, i, shipParts.get(j));
             }
         }
     }

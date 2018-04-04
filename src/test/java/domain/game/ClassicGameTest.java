@@ -22,11 +22,16 @@ public class ClassicGameTest {
     game = new ClassicGame(firstPlayer, secondPlayer);
 }
 
-    @Ignore
     @Test
     public void shoot() {
-        Result result = game.shoot(firstPlayer,'a', 2);
-        assertEquals(Result.MISSED, result);
+        Result result = game.shoot(firstPlayer, new Cell ('b', 2,new ShipPart(new Ship(4))));
+        assertEquals(Result.GOT, result);
+    }
+
+    @Test
+    public void defineHit(){
+        Cell cell = game.defineHit(firstPlayer, 'd', 5 );
+        assertNotNull(cell);
     }
 
     @Test

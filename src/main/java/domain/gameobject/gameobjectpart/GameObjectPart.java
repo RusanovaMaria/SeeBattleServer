@@ -4,10 +4,10 @@ import domain.gameobject.GameObject;
 
 public interface GameObjectPart {
 
-    public void destroy();
+     void destroy();
 
-    public boolean isAlive();
+     boolean isAlive();
 
-    public GameObject getOwnObject();
+     GameObject getOwnObject();
 
 }

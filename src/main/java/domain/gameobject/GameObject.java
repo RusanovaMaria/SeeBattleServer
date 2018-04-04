@@ -5,13 +5,13 @@ import domain.gameobject.gameobjectpart.GameObjectPart;
 import java.util.ArrayList;
 
 public interface GameObject {
-    public int getSize();
+     int getSize();
 
-    public Status getStatus();
+     Status getStatus();
 
-    public void changeStatus();
+     void changeStatus();
 
-    public Kind getKind();
+     Kind getKind();
 
-    public ArrayList<GameObjectPart> getAllParts();
+     ArrayList<GameObjectPart> getAllParts();
 }

@@ -24,9 +24,8 @@ public class ClassicGame implements Game {
     }
 
     @Override
-    public Result shoot(Player player, char y, int x) {
+    public Result shoot(Player player, Cell cell) {
         Result result = null;
-        Cell cell = defineHit(player, y, x);
 
         System.out.println(cell);
 
@@ -50,6 +49,25 @@ public class ClassicGame implements Game {
             cell.mark();
         }
         return result;
+    }
+
+    @Override
+    public Cell defineHit (Player player, char y, int x){
+        Cell cell = null;
+
+        PlayingField playingField = playingFieldAndPlayerMap.get(player);
+        Cell [] [] cells = playingField.getCells();
+
+        for (int i = 0; i<cells.length; i++){
+            for (int j = 0; j < cells.length; j++){
+                if ((cells[i][j].getY() == y) && (cells[i][j].getX() == x)) cell = cells[i][j];
+                System.out.println("y:");
+                System.out.println( cells[i][j].getY() == y);
+                System.out.println("x:");
+                System.out.println(cells[i][j].getX() == x);
+            }
+        }
+        return cell;
     }
 
     @Override
@@ -88,20 +106,6 @@ public class ClassicGame implements Game {
     @Override
     public Map<Player, PlayingField> getPlayingFieldAndPlayerMap(){
         return playingFieldAndPlayerMap;
-    }
-
-    private Cell defineHit (Player player, char y, int x){
-        Cell cell = null;
-
-        PlayingField playingField = playingFieldAndPlayerMap.get(player);
-        Cell [] [] cells = playingField.getCells();
-
-        for (int i = 0; i<cells.length; i++){
-            for (int j = 0; j < cells.length; j++){
-                if ((cells[i][j].getY() == y) && (cells[i][j].getX() == x)) cell = cells[i][j];
-            }
-        }
-        return cell;
     }
 
     private void initPlayingField() {

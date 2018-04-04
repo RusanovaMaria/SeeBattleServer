@@ -1,4 +1,4 @@
-import service.Server;
+import service.server.Server;
 
 public class App {
 
