@@ -38,7 +38,6 @@ public class Ship implements GameObject {
 
     @Override
     public void changeStatus() {
-        Status status = Status.ALIVE;
 
         if (isDamaged()) status = Status.INJURED;
         if (isKilled()) status = Status.KILLED;

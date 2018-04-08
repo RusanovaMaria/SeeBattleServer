@@ -1,28 +1,25 @@
 package service.server;
 
-import domain.player.Player;
-
 import java.io.*;
 import java.net.Socket;
-import java.util.Map;
 import java.util.Scanner;
 
-public class ClientHandler implements Runnable {
+public class ClientHandler{
 
-    private Socket clientSocket;
+    private Socket socket;
     private PrintWriter printWriter;
-    private Scanner scanner;
+    private Scanner scannerIn;
 
     public ClientHandler(Socket clientSocket) {
-        this.clientSocket = clientSocket;
+        this.socket = clientSocket;
         initStreams();
     }
 
     private void initStreams() {
         try {
-            InputStream inputStream = clientSocket.getInputStream();
-            scanner = new Scanner(inputStream, "UTF-8");
-            OutputStream outputStream = clientSocket.getOutputStream();
+            InputStream inputStream = socket.getInputStream();
+            scannerIn = new Scanner(inputStream, "UTF-8");
+            OutputStream outputStream = socket.getOutputStream();
             printWriter = new PrintWriter(new OutputStreamWriter(outputStream), true);
 
         } catch (IOException ex) {
@@ -31,56 +28,42 @@ public class ClientHandler implements Runnable {
         }
     }
 
-    public String enterName() {
-        String name = null;
-
-        requestName();
-        name = readName();
-
-        return name;
-    }
-
-    private void requestName() {
-        sendMessage("Введите ваш ник");
-    }
-
-    private String readName() {
+    public String enterName(){
+        sendMessage("Введите свое имя");
         return getMessage();
-    }
-
-    public String getMessage() {
-        String message = "";
-
-        if (scanner.hasNext()) {
-            message = scanner.nextLine();
-
-        }
-        return message;
     }
 
     public void sendMessage(String message) {
         printWriter.println(message);
     }
 
+    public String getMessage() {
+
+        if (scannerIn.hasNext()) {
+          return  scannerIn.nextLine();
+
+        }
+       return " ";
+    }
+
+    public boolean isExist(){
+
+        if(!socket.isClosed()){
+            return true;
+        } else return false;
+    }
+
     public void closeAllConnections() {
 
         try {
+
             printWriter.close();
-            scanner.close();
-            clientSocket.close();
+            scannerIn.close();
+            socket.close();
 
-        } catch (IOException ex) {
-            System.out.println("Ошибка закрытия сокета");
+        } catch (IOException ex){
+            System.out.println("Ошибка закрытия соединений");
             ex.printStackTrace();
-        }
-    }
-
-    public void run() {
-
-        ConnectionController connectionController = new ConnectionController(this);
-
-        while (!clientSocket.isClosed()) {
-
         }
     }
 }

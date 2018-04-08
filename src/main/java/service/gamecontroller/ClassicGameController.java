@@ -7,12 +7,11 @@ import domain.player.Player;
 import domain.playingfield.Cell;
 import service.server.ClientHandler;
 import service.server.ConnectionController;
-import service.server.Server;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class ClassicGameController implements GameController {
+public class ClassicGameController implements Runnable {
 
     private ConnectionController firstConnectionController;
     private ConnectionController secondConnectionController;
@@ -45,7 +44,11 @@ public class ClassicGameController implements GameController {
         game = new ClassicGame(firstPlayer, secondPlayer);
     }
 
-    public void play() {
+    public void run() {
+        play();
+    }
+
+    private void play() {
         while (!game.isEnd()) {
             for (Player player : playerAndHandler.keySet()) {
                 playMove(player);
