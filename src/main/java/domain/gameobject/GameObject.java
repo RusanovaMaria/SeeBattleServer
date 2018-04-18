@@ -1,17 +1,4 @@
-package domain.gameobject;
+package domain.GameObject;
 
-import domain.gameobject.gameobjectpart.GameObjectPart;
-
-import java.util.ArrayList;
-
-public interface GameObject {
-     int getSize();
-
-     Status getStatus();
-
-     void changeStatus();
-
-     Kind getKind();
-
-     ArrayList<GameObjectPart> getAllParts();
+public class GameObject {
 }

@@ -1,13 +1,8 @@
-package domain.gameobject.gameobjectpart;
+package domain.GameObject.GameObjectPart;
 
-import domain.gameobject.GameObject;
+public class GameObjectPart {
 
-public interface GameObjectPart {
+    public GameObjectPart() {
 
-     void destroy();
-
-     boolean isAlive();
-
-     GameObject getOwnObject();
-
+    }
 }

@@ -1,21 +1,10 @@
-package domain.game;
-
-import domain.player.Player;
-import domain.playingfield.Cell;
-import domain.playingfield.PlayingField;
+package domain;
 
 import java.util.Map;
 
 public interface Game {
-     Result shoot(Player player, Cell cell);
 
-     Cell defineHit(Player player, char y, int x);
+    boolean isEnd();
 
-     Player getWinner();
-
-     Player getLooser();
-
-     boolean isEnd();
-
-     Map <Player, PlayingField> getPlayingFieldAndPlayerMap();
+    Map<Player, PlayingField> getPlayers();
 }

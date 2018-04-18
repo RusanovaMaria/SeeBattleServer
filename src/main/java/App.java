@@ -1,10 +1,6 @@
-import service.server.Server;
-
 public class App {
 
-    public static void main (String [] args){
-        Server server = new Server();
-        server.go();
-    }
+    public static void main (String [] args) {
 
+    }
 }

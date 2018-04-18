@@ -8,7 +8,7 @@ public class ClassicPlayingFieldTest {
 
     @Test
     public void isEmpty() {
-        PlayingField playingField = new ClassicPlayingField();
+        ClassicPlayingField playingField = new ClassicPlayingField();
         boolean empty  = playingField.isEmpty();
         assertFalse(empty);
     }

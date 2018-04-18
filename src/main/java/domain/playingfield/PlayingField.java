@@ -2,10 +2,9 @@ package domain.playingfield;
 
 public interface PlayingField {
 
-    int getSize();
+    int getWidth();
 
-    boolean isEmpty();
+    int getHeight();
 
-     Cell [][] getCells();
-
+    char[] getCharCoordinate();
 }
