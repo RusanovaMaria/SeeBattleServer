@@ -1,4 +1,13 @@
-package domain;
+package domain.game;
+
+import domain.GameObject.GameObject;
+import domain.GameObject.Status;
+import domain.GameObjectPart.GameObjectPart;
+import domain.Player.Player;
+import domain.cage.Cage;
+import domain.cage.State;
+import domain.playingfield.ClassicPlayingField;
+import domain.playingfield.PlayingField;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,21 +16,21 @@ public class ClassicGame implements Game {
 
     private Player firstPlayer;
     private Player secondPlayer;
-    private Map<Player, PlayingField> players;
+    private Map<Player, ClassicPlayingField> players;
 
     public ClassicGame(Player firstPlayer, Player secondPlayer) {
 
         this.firstPlayer = firstPlayer;
         this.secondPlayer = secondPlayer;
-        init();
+        initPlayers();
     }
 
-    private void init() {
+    private void initPlayers() {
 
         players = new HashMap<>();
 
-        players.put(firstPlayer, new PlayingField());
-        players.put(secondPlayer, new PlayingField());
+        players.put(firstPlayer, new ClassicPlayingField());
+        players.put(secondPlayer, new ClassicPlayingField());
     }
 
     @Override
@@ -30,8 +39,62 @@ public class ClassicGame implements Game {
     }
 
     @Override
-    public Map<Player, PlayingField> getPlayers() {
+    public Map<Player, ClassicPlayingField> getPlayers() {
         return players;
+    }
+
+    public Cage fire(Player player, int x, char y) {
+
+        PlayingField playingField = players.get(player);
+
+        Cage affectedCage = playingField.findCage(x, y);
+
+        return affectedCage;
+    }
+
+    public Result defineHit(Cage cage) {
+
+        State state = cage.determineState();
+
+        switch (state) {
+
+            case USED:
+                return Result.REPEATED;
+
+            case FREE:
+                return Result.MISSED;
+
+            case FULL:
+                GameObject gameObject = ejectGameObject(cage);
+                return determineDamage(gameObject);
+        }
+
+        cage.markAsUsed();
+
+        throw new IllegalArgumentException("Неверное состояние компонента игрового поля");
+    }
+
+    private GameObject ejectGameObject(Cage cage) {
+
+        GameObjectPart gameObjectPart = cage.getGameObjectPart();
+        return gameObjectPart.getGameObject();
+    }
+
+    private Result determineDamage(GameObject gameObject) {
+
+        Status status = gameObject.getStatus();
+
+        switch (status) {
+
+            case DAMAGED:
+                return Result.GOT;
+
+            case KILLED:
+                return Result.KILLED;
+
+            default:
+                throw new IllegalArgumentException("Объект не был поврежден");
+        }
     }
 }
 

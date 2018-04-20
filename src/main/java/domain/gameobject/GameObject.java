@@ -1,4 +1,12 @@
 package domain.GameObject;
 
-public class GameObject {
+public interface GameObject {
+
+    void shoot();
+
+    Kind getKind();
+
+    int getSize();
+
+    Status getStatus();
 }
