@@ -4,7 +4,7 @@ import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class ClientHandler {
+public class ClientHandler implements Runnable{
 
     private Socket socket;
     private PrintWriter printWriter;
@@ -28,10 +28,39 @@ public class ClientHandler {
         }
     }
 
-    private void read() {
+    @Override
+    public void run() {
 
-        while (scannerIn.hasNext()) {
+        while (!socket.isClosed()) {
 
+            readAllTraffic();
         }
+    }
+
+    private void readAllTraffic() {
+
+        if(scannerIn.hasNext()) {
+
+            String command = scannerIn.nextLine();
+
+            CommandController commandController = new CommandController(this);
+            commandController.handle(command);
+        }
+    }
+
+    public void write(String message) {
+
+        printWriter.println(message);
+    }
+
+    public String read() {
+
+        String message = "";
+
+        if (scannerIn.hasNext()) {
+            message = scannerIn.nextLine();
+        }
+
+        return message;
     }
 }

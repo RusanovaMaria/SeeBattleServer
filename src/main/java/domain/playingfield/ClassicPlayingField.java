@@ -1,8 +1,8 @@
 package domain.playingfield;
 
-import domain.GameObject.GameObject;
-import domain.GameObject.Ship;
 import domain.cage.Cage;
+import domain.gameobject.GameObject;
+import domain.gameobject.Ship;
 import domain.rule.ClassicRule;
 import domain.rule.Rule;
 

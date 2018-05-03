@@ -1,9 +1,9 @@
 package domain.game;
 
-import domain.GameObject.GameObject;
-import domain.GameObject.Status;
-import domain.GameObjectPart.GameObjectPart;
-import domain.Player.Player;
+import domain.gameobject.GameObject;
+import domain.gameobject.Status;
+import domain.gameobjectpart.GameObjectPart;
+import domain.player.Player;
 import domain.cage.Cage;
 import domain.cage.State;
 import domain.playingfield.ClassicPlayingField;
@@ -52,7 +52,7 @@ public class ClassicGame implements Game {
         return affectedCage;
     }
 
-    public Result defineHit(Cage cage) {
+    public Result fire(Cage cage) {
 
         State state = cage.determineState();
 

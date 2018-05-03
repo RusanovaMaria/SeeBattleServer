@@ -1,8 +1,7 @@
 package domain.cage;
 
 import domain.GameObject.GameObject;
-import domain.GameObjectPart.GameObjectPart;
-import domain.GameObjectPart.ShipPart;
+import domain.gameobjectpart.GameObjectPart;
 
 public class Cage {
 

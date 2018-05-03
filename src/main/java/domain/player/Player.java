@@ -1,4 +1,4 @@
-package domain.Player;
+package domain.player;
 
 import domain.playingfield.ClassicPlayingField;
 
@@ -16,4 +16,7 @@ public class Player {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 }

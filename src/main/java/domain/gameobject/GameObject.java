@@ -1,4 +1,4 @@
-package domain.GameObject;
+package domain.gameobject;
 
 public interface GameObject {
 

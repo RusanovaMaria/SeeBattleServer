@@ -1,7 +1,7 @@
-package domain.GameObject;
+package domain.gameobject;
 
-import domain.GameObjectPart.GameObjectPart;
-import domain.GameObjectPart.ShipPart;
+import domain.gameobjectpart.GameObjectPart;
+import domain.gameobjectpart.ShipPart;
 
 import java.util.ArrayList;
 import java.util.List;

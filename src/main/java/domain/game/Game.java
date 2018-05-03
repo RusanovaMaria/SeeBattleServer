@@ -1,6 +1,6 @@
 package domain.game;
 
-import domain.Player.Player;
+import domain.player.Player;
 import domain.playingfield.ClassicPlayingField;
 
 import java.util.Map;

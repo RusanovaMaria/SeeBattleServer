@@ -1,6 +1,6 @@
 package domain.rule;
 
-import domain.GameObject.Kind;
+import domain.gameobject.Kind;
 
 public interface Rule {
 
