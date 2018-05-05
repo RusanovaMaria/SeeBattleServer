@@ -1,6 +1,5 @@
 package domain.cage;
 
-import domain.GameObject.GameObject;
 import domain.gameobjectpart.GameObjectPart;
 
 public class Cage {

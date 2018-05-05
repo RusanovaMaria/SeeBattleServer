@@ -43,16 +43,17 @@ public class ClassicGame implements Game {
         return players;
     }
 
-    public Cage fire(Player player, int x, char y) {
+
+    public Result fire(Player player, int x, char y) {
 
         PlayingField playingField = players.get(player);
 
         Cage affectedCage = playingField.findCage(x, y);
 
-        return affectedCage;
+        return defineHit(affectedCage);
     }
 
-    public Result fire(Cage cage) {
+    private Result defineHit(Cage cage) {
 
         State state = cage.determineState();
 

@@ -1,6 +1,6 @@
 package application.client;
 
-public enum Status {
+public enum ClientStatus {
 
-    FREE, IN_GAME, INVITED;
+    FREE, IN_GAME, INVITED, INVITING
 }

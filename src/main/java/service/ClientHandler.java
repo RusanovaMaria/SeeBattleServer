@@ -1,5 +1,7 @@
 package service;
 
+import application.controller.ControllerManager;
+
 import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
@@ -31,6 +33,8 @@ public class ClientHandler implements Runnable{
     @Override
     public void run() {
 
+        write("Введите команду 'start'");
+
         while (!socket.isClosed()) {
 
             readAllTraffic();
@@ -43,7 +47,7 @@ public class ClientHandler implements Runnable{
 
             String command = scannerIn.nextLine();
 
-            CommandController commandController = new CommandController(this);
+            ControllerManager commandController = new ControllerManager(this);
             commandController.handle(command);
         }
     }

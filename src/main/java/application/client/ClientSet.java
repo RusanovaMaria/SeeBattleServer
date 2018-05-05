@@ -1,28 +1,45 @@
-package application;
+package application.client;
 
 import domain.player.Player;
 import service.ClientHandler;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 public class ClientSet {
 
-    private final static ArrayList<Client> clients = new ArrayList();
+    private final static List<Client> clients = new ArrayList();
 
     public void add(Client client) {
 
         clients.add(client);
     }
 
-    public Player findPlayerByClientHandler() {
+    public Client findClientByClientHandler(ClientHandler clientHandler) {
 
-        for ()
+        for (Client client: clients) {
+
+            if (client.getClientHandler().equals(clientHandler)) {
+                return client;
+            }
+        }
+
+        throw new IllegalArgumentException("Клиент с таким параметром не обнаружен");
     }
 
-    public ClientHandler findClientHandlerByPlayer() {
+    public Client findClientHandlerByPlayer(Player player) {
 
+        for (Client client: clients) {
 
+            if (client.getPlayer().equals(player)) {
+                return client;
+            }
+        }
+
+        throw new IllegalArgumentException("Клиент с таким параметром не обнаружен");
+    }
+
+    public static List<Client> getClients() {
+        return clients;
     }
 }

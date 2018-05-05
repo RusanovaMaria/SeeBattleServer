@@ -28,8 +28,8 @@ public class ClassicPlayingField implements PlayingField {
 
         cages = new Cage[WIDTH][HEIGHT];
 
+        for (int j = 0; j < HEIGHT; j++) {
         for (int i = 0; i < WIDTH; i++) {
-            for (int j = 0; j < HEIGHT; j++) {
                 cages[i][j] = new Cage(i, CHAR_COORDINATE[j], null);
             }
         }
@@ -39,6 +39,7 @@ public class ClassicPlayingField implements PlayingField {
 
         Rule rule = new ClassicRule();
         int[] shipsSize = rule.getGameObjectsSize();
+        ships = new ArrayList<>();
 
         for (int i = 0; i < shipsSize.length; i++) {
             int size = shipsSize[i];
@@ -60,7 +61,7 @@ public class ClassicPlayingField implements PlayingField {
                 }
             }
         }
-        return null;
+        throw new IllegalArgumentException("Клетка с данными координаами не найдена");
     }
 
     @Override
