@@ -1,6 +1,6 @@
-package domain.GameObjectPart;
+package domain.gameobjectpart;
 
-import domain.GameObject.GameObject;
+import domain.gameobject.GameObject;
 
 public interface GameObjectPart {
 
